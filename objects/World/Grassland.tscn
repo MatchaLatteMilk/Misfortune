@@ -14,6 +14,7 @@ scale = Vector2( 1.67, 1.67 )
 texture = ExtResource( 4 )
 
 [node name="Mob" type="Node2D" parent="."]
+position = Vector2( 120, 213 )
 
 [node name="Ground" type="Sprite" parent="."]
 position = Vector2( 120, 213 )

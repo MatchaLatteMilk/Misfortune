@@ -1,6 +1,165 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://objects/World/SuperWorld.gd" type="Script" id=1]
+[ext_resource path="res://assets/Energy.png" type="Texture" id=2]
+[ext_resource path="res://objects/World/UI_Gold_Energy_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/Coin.png" type="Texture" id=4]
+[ext_resource path="res://assets/Map_icon.png" type="Texture" id=5]
+[ext_resource path="res://assets/Map_Texture_open.png" type="Texture" id=6]
+[ext_resource path="res://assets/Homeland_icon.png" type="Texture" id=7]
+[ext_resource path="res://assets/grassland_icon.png" type="Texture" id=8]
+
+[sub_resource type="Theme" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://assets/SuperLegendBoy-4w8Y.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+font_data = SubResource( 6 )
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="DynamicFontData" id=13]
+font_path = "res://assets/VerminVibes1989Regular-m77m.ttf"
+
+[sub_resource type="DynamicFont" id=14]
+size = 32
+font_data = SubResource( 13 )
 
 [node name="SuperWorld" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Gold" type="Button" parent="CanvasLayer"]
+margin_right = 46.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+icon = ExtResource( 4 )
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Energy" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -23.0
+margin_right = 23.0
+margin_bottom = 40.0
+theme = SubResource( 15 )
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+icon = ExtResource( 2 )
+flat = true
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchor_bottom = 1.0
+margin_top = 86.0
+margin_right = 32.0
+margin_bottom = -83.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map" type="Button" parent="CanvasLayer/MenuContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+icon = ExtResource( 5 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map_Texture" type="TextureRect" parent="CanvasLayer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Map_Texture"]
+margin_left = 30.0
+margin_top = 38.0
+margin_right = 210.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 180, 38 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Homeland" type="Button" parent="CanvasLayer/Map_Texture/VBoxContainer"]
+margin_right = 180.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 7 )
+text = "HomeLand"
+icon = ExtResource( 7 )
+flat = true
+
+[node name="Grassland" type="Button" parent="CanvasLayer/Map_Texture/VBoxContainer"]
+margin_top = 42.0
+margin_right = 180.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 7 )
+text = "GrassLand"
+icon = ExtResource( 8 )
+flat = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Map_Texture"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -8.99999
+margin_top = -76.0
+margin_right = 9.0
+margin_bottom = -48.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+custom_fonts/font = SubResource( 14 )
+text = "X"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scene" type="Node2D" parent="."]
+[connection signal="pressed" from="CanvasLayer/MenuContainer/Map" to="." method="_on_Map_pressed"]
+[connection signal="pressed" from="CanvasLayer/Map_Texture/VBoxContainer/Homeland" to="." method="_on_Homeland_pressed"]
+[connection signal="pressed" from="CanvasLayer/Map_Texture/VBoxContainer/Grassland" to="." method="_on_Grassland_pressed"]
+[connection signal="pressed" from="CanvasLayer/Map_Texture/Button" to="." method="_on_Button_pressed"]
